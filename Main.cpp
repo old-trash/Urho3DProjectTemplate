@@ -1,5 +1,5 @@
 /*
-    Ãëàâíûé êëàññ
+    Ğ“Ğ»Ğ°Ğ²Ğ½Ñ‹Ğ¹ ĞºĞ»Ğ°ÑÑ
 */
 
 #include "Global.h"
@@ -15,7 +15,7 @@ class Game : public Application
 public:
     Game(Context* context) : Application(context)
     {
-        context_->RegisterSubsystem(global = new Global(context_)); // Òóò çàãğóæàåòñÿ êîíôèã
+        context_->RegisterSubsystem(global = new Global(context_)); // Ğ¢ÑƒÑ‚ Ğ·Ğ°Ğ³Ñ€ÑƒĞ¶Ğ°ĞµÑ‚ÑÑ ĞºĞ¾Ğ½Ñ„Ğ¸Ğ³
         SubscribeToEvent(E_BEGINFRAME, URHO3D_HANDLER(Game, ApplyGameState));
     }
 
@@ -40,7 +40,7 @@ public:
         SubscribeToEvent(E_SCREENMODE, URHO3D_HANDLER(Game, HandleScreenMode));
     }
 
-    // Òóò ìîæíî ìåíÿòü òåêóùóş ñöåíó
+    // Ğ¢ÑƒÑ‚ Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ Ğ¼ĞµĞ½ÑÑ‚ÑŒ Ñ‚ĞµĞºÑƒÑ‰ÑƒÑ ÑÑ†ĞµĞ½Ñƒ
     void ApplyGameState(StringHash eventType, VariantMap& eventData)
     {
         if (global->gameState_ == global->neededGameState_)
@@ -64,7 +64,7 @@ public:
 
     void Stop() override
     {
-        // Ñîõğàíÿåì êîíôèã ïğè âûõîäå èç èãğû
+        // Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½ÑĞµĞ¼ ĞºĞ¾Ğ½Ñ„Ğ¸Ğ³ Ğ¿Ñ€Ğ¸ Ğ²Ñ‹Ñ…Ğ¾Ğ´Ğµ Ğ¸Ğ· Ğ¸Ğ³Ñ€Ñ‹
         CONFIG->Save();
     }
 };

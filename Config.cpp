@@ -3,7 +3,7 @@
 
 #include "Global.h"
 
-// Строки в виде констант, чтобы избежать опечаток
+// РЎС‚СЂРѕРєРё РІ РІРёРґРµ РєРѕРЅСЃС‚Р°РЅС‚, С‡С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ РѕРїРµС‡Р°С‚РѕРє
 static const rapidjson::Value::StringRefType STR_WINDOW_WIDTH = "WindowWidth";
 static const rapidjson::Value::StringRefType STR_WINDOW_HEIGHT = "WindowHeight";
 static const rapidjson::Value::StringRefType STR_FULLSCREEN = "Fullscreen";
@@ -16,13 +16,13 @@ Config::Config(Context* context) : Object(context)
 
 String Config::GetConfigFileName()
 {
-    // InitGlobal() еще не вызван, поэтому fileSystem использовать нельзя
+    // InitGlobal() РµС‰Рµ РЅРµ РІС‹Р·РІР°РЅ, РїРѕСЌС‚РѕРјСѓ fileSystem РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµР»СЊР·СЏ
     FileSystem* fs = GetSubsystem<FileSystem>();
 
     return fs->GetAppPreferencesDir(COMPANY_NAME, APP_NAME) + "Config.json";
 }
 
-// Читает значение определенного типа из конфига, если возможно
+// Р§РёС‚Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ С‚РёРїР° РёР· РєРѕРЅС„РёРіР°, РµСЃР»Рё РІРѕР·РјРѕР¶РЅРѕ
 template<typename Type> void TryLoadValue(rapidjson::Document& document, const char* name, Type& out)
 {
     rapidjson::Value::MemberIterator member = document.FindMember(name);
@@ -36,12 +36,12 @@ template<typename Type> void TryLoadValue(rapidjson::Document& document, const c
 
 void Config::Load()
 {
-    // InitGlobal() еще не вызван, поэтому fileSystem использовать нельзя
+    // InitGlobal() РµС‰Рµ РЅРµ РІС‹Р·РІР°РЅ, РїРѕСЌС‚РѕРјСѓ fileSystem РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµР»СЊР·СЏ
     FileSystem* fs = GetSubsystem<FileSystem>();
 
     String fileName = GetConfigFileName();
 
-    // Загружаем конфиг, если он есть
+    // Р—Р°РіСЂСѓР¶Р°РµРј РєРѕРЅС„РёРі, РµСЃР»Рё РѕРЅ РµСЃС‚СЊ
     if (fs->FileExists(fileName))
     {
         File file(context_, fileName, FILE_READ);
@@ -69,7 +69,7 @@ void Config::Load()
 void Config::Save()
 {
     rapidjson::Document document;
-    document.SetObject(); // Изначально у документа тип Null, меняем тип на Object
+    document.SetObject(); // РР·РЅР°С‡Р°Р»СЊРЅРѕ Сѓ РґРѕРєСѓРјРµРЅС‚Р° С‚РёРї Null, РјРµРЅСЏРµРј С‚РёРї РЅР° Object
     rapidjson::MemoryPoolAllocator<>& allocator = document.GetAllocator();
 
     document.AddMember(STR_WINDOW_WIDTH, windowWidth_, allocator);
