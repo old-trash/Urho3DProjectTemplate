@@ -10,7 +10,7 @@ class Config : public Object
     URHO3D_OBJECT(Config, Object);
 
 private:
-    // Путь для сохранения конфига
+    // Возвращает путь к конфигу
     String GetConfigFileName();
 
     // Загружает конфиг (вызывается в конструкторе)
@@ -19,10 +19,10 @@ private:
 public:
     Config(Context* context);
 
-    // Сохранение конфига в файл
+    // Сохраняет конфиг в файл
     void Save();
 
-    // Значениями по умолчанию задаются тут
+    // Значения по умолчанию задаются тут
     int windowWidth_ = 800;
     int windowHeight_ = 600;
     bool fullscreen_ = false;

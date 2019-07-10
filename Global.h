@@ -17,9 +17,6 @@ enum class GameState
     GameOver
 };
 
-static const String COMPANY_NAME = "MyCompany";
-static const String APP_NAME = "My Game";
-
 class Global : public Object
 {
     URHO3D_OBJECT(Global, Object);

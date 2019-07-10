@@ -3,10 +3,9 @@
 */
 
 #include "Global.h"
+#include "Consts.h"
 
 #include <Urho3D/Urho3DAll.h>
-
-using namespace Urho3D;
 
 class Game : public Application
 {
@@ -28,7 +27,7 @@ public:
         engineParameters_[EP_WINDOW_WIDTH] = CONFIG->windowWidth_;
         engineParameters_[EP_WINDOW_HEIGHT] = CONFIG->windowHeight_;
         engineParameters_[EP_BORDERLESS] = CONFIG->borderless_;
-        engineParameters_[EP_LOG_NAME] = fs->GetAppPreferencesDir(COMPANY_NAME, APP_NAME) + "Log.txt";
+        //engineParameters_[EP_LOG_NAME] = fs->GetAppPreferencesDir(COMPANY_NAME, APP_NAME) + "Log.txt";
         //engineParameters_[EP_RESOURCE_PATHS] = "GameData;Data;CoreData";
     }
 
@@ -40,7 +39,7 @@ public:
         SubscribeToEvent(E_SCREENMODE, URHO3D_HANDLER(Game, HandleScreenMode));
     }
 
-    // Тут можно менять текущую сцену
+    // Тут меняем текущуюу сцену и состояние игры
     void ApplyGameState(StringHash eventType, VariantMap& eventData)
     {
         if (global->gameState_ == global->neededGameState_)

@@ -1,7 +1,8 @@
-#include <rapidjson/document.h>
+#include <rapidjson/document.h> // Конфликтует с DebugNew.h, поэтому в начале
 #include <rapidjson/prettywriter.h>
 
 #include "Global.h"
+#include "Consts.h"
 
 // Строки в виде констант, чтобы избежать опечаток
 static const rapidjson::Value::StringRefType STR_WINDOW_WIDTH = "WindowWidth";
