@@ -1,15 +1,24 @@
 /*
     Подсистема содержит указатели на глобальные объекты.
-    
     Объявлять SharedPtr<Object> в глобальной области видимости нельзя
     (https://github.com/urho3d/Urho3D/issues/802), поэтому они хранятся в этой подсистеме.
-
     Заодно тут указатели на подсистемы для ускорения доступа.
 */
 
 #pragma once
 #include <Urho3D/Urho3DAll.h>
+#include "Config.h"
 //#include "MyGlobalObject.h"
+
+enum class GameState
+{
+    MainMenu = 0,
+    Play,
+    GameOver
+};
+
+static const String COMPANY_NAME = "MyCompany";
+static const String APP_NAME = "My Game";
 
 class Global : public Object
 {
@@ -18,10 +27,15 @@ class Global : public Object
 public:
     Global(Context* context);
 
+    SharedPtr<Config> config_; // Инициализируется в конструкторе
+
+    GameState gameState_ = GameState::MainMenu;
+    GameState neededGameState_ = GameState::MainMenu;
+
     //SharedPtr<MyGlobalObject> myGlobalObject_;
 };
 
-// Стандартные подсистемы движка.
+// Стандартные подсистемы движка
 extern Audio* audio;
 extern ResourceCache* cache;
 extern Engine* engine;
@@ -33,14 +47,14 @@ extern Renderer* renderer;
 extern Time* time;
 extern UI* ui;
 
-// Подсистемы движка, которые нужно инициализировать вручную.
+// Подсистемы движка, которые нужно инициализировать вручную
 extern Console* console;
 extern DebugHud* debugHud;
 
-// Собственная подсистема.
+// Собственная подсистема
 extern Global* global;
 
-// Создает объект Global и инициализирует указатели на подсистемы.
+// Инициализирует указатели на подсистемы
 void InitGlobal(Context* context);
 
 #define UI_ROOT ui->GetRoot()
@@ -56,5 +70,6 @@ void InitGlobal(Context* context);
 #define GET_TEXTURE_2D cache->GetResource<Texture2D>
 #define GET_XML_FILE cache->GetResource<XMLFile>
 
-//#define MY_GLOBAL_OBJECT global->myGlobalObject_
+#define CONFIG global->config_
 
+//#define MY_GLOBAL_OBJECT global->myGlobalObject_

@@ -3,6 +3,7 @@
 Global::Global(Context *context) :
     Object(context)
 {
+    config_ = new Config(context_);
 }
 
 Audio* audio = nullptr;
@@ -42,6 +43,4 @@ void InitGlobal(Context* context)
 
     debugHud = engine->CreateDebugHud();
     debugHud->SetDefaultStyle(style);
-
-    context->RegisterSubsystem(global = new Global(context));
 }
